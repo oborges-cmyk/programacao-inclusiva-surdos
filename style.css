@@ -1,0 +1,91 @@
+  /* Custom CSS Variables & High Contrast Theme Support */
+  :root {
+    --bg-body: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-nav: #0f172a;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --text-nav: #ffffff;
+    --accent-primary: #2563eb;
+    --accent-secondary: #0d9488;
+    --accent-highlight: #f59e0b;
+    --border-color: #e2e8f0;
+    --focus-ring: #3b82f6;
+    --font-scale: 1;
+  }
+
+  body.high-contrast {
+    --bg-body: #000000;
+    --bg-card: #121212;
+    --bg-nav: #000000;
+    --text-main: #ffffff;
+    --text-muted: #f3f4f6;
+    --text-nav: #ffff00;
+    --accent-primary: #ffff00;
+    --accent-secondary: #00ffff;
+    --accent-highlight: #ff00ff;
+    --border-color: #ffffff;
+    --focus-ring: #ffff00;
+  }
+
+  body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-size: calc(1rem * var(--font-scale));
+    transition: background-color 0.3s, color 0.3s;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+  /* Accessibility Focus Styles */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 4px solid var(--focus-ring) !important;
+    outline-offset: 2px !important;
+  }
+
+  .card-theme {
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+    color: var(--text-main);
+  }
+
+  /* Video Aspect Ratio & Custom Controls Styling */
+  .aspect-video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    background-color: #000;
+  }
+
+  .aspect-video-container iframe,
+  .aspect-video-container video,
+  .aspect-video-container .video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Custom Libras Badge Pulse */
+  @keyframes pulse-border {
+    0%, 100% { border-color: rgba(37, 99, 235, 1); }
+    50% { border-color: rgba(13, 148, 136, 1); }
+  }
+
+  .libras-active {
+    animation: pulse-border 2s infinite;
+  }
+
+  /* High contrast text overrides */
+  body.high-contrast .text-muted-custom {
+    color: #ffffff !important;
+  }
+  body.high-contrast button {
+    border: 2px solid #ffffff;
+  }
+  body.high-contrast .bg-contrast-box {
+    background-color: #1a1a1a !important;
+    border: 2px solid #ffffff !important;
+  }

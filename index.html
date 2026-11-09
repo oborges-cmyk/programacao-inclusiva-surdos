@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>LibrasCode - Aprenda Programação em Libras</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Prism.js Syntax Highlighting CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+<body class="min-h-screen flex flex-col antialiased">
+
+  <!-- ACCESSIBILITY TOOLBAR (TOP STRIP) -->
+  <header class="bg-slate-900 text-white py-2 px-4 shadow-md sticky top-0 z-40" role="banner">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2 text-sm">
+      <div class="flex items-center space-x-2 font-bold text-amber-400">
+        <i class="fa-solid fa-hands-asl-interpreting text-xl" aria-hidden="true"></i>
+        <span>Acessível em Libras &amp; Português</span>
+      </div>
+      
+      <!-- Quick Accessibility Controls -->
+      <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-1" aria-label="Controle de tamanho de fonte">
+          <span class="sr-only">Tamanho do texto:</span>
+          <button id="btn-font-decrease" title="Diminuir Fonte (A-)" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded font-bold border border-slate-600 focus:ring">A-</button>
+          <button id="btn-font-reset" title="Tamanho Normal da Fonte" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded font-bold border border-slate-600 focus:ring">A</button>
+          <button id="btn-font-increase" title="Aumentar Fonte (A+)" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded font-bold border border-slate-600 focus:ring">A+</button>
+        </div>
+        <button id="btn-high-contrast" class="flex items-center space-x-2 px-3 py-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded transition focus:ring" title="Alternar Alto Contraste">
+          <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
+          <span>Alto Contraste</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN NAVIGATION -->
+  <nav class="bg-slate-800 border-b border-slate-700 py-4 px-4 shadow-lg" role="navigation" aria-label="Navegação Principal">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+      <a href="#home" class="flex items-center space-x-3 group text-white">
+        <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white text-xl font-black group-hover:scale-105 transition-transform">
+          🤟
+        </div>
+        <div>
+          <span class="text-2xl font-black tracking-wider text-blue-400 block leading-none">LibrasCode</span>
+          <span class="text-xs text-slate-300">Computação Sem Barreiras</span>
+        </div>
+      </a>
+
+      <!-- Menu Items -->
+      <ul class="flex flex-wrap items-center gap-2 md:gap-6 font-semibold">
+        <li>
+          <a href="#modulos" class="px-3 py-2 text-white hover:text-blue-400 hover:bg-slate-700/50 rounded-lg transition flex items-center space-x-2">
+            <i class="fa-solid fa-cubes text-blue-400" aria-hidden="true"></i>
+            <span>Módulos</span>
+          </a>
+        </li>
+        <li>
+          <a href="#pratica" class="px-3 py-2 text-white hover:text-blue-400 hover:bg-slate-700/50 rounded-lg transition flex items-center space-x-2">
+            <a href="#pratica" class="px-3 py-2 text-white hover:text-blue-400 hover:bg-slate-700/50 rounded-lg transition flex items-center space-x-2">
+            <i class="fa-solid fa-code text-teal-400" aria-hidden="true"></i>
+            <span>Editor Prático</span>
+          </a>
+        </li>
+        <li>
+          <a href="#glossario" class="px-3 py-2 text-white hover:text-blue-400 hover:bg-slate-700/50 rounded-lg transition flex items-center space-x-2">
+            <i class="fa-solid fa-book-bookmark text-amber-400" aria-hidden="true"></i>
+            <span>Sinais em Libras</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="py-12 px-4 border-b border-slate-200 card-theme bg-gradient-to-b from-blue-50/50 to-transparent dark:from-transparent">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm font-bold border border-blue-200">
+</body>
+</html>
