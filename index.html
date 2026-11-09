@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <title>LibrasCode - Aprenda Programação em Libras</title>
+    <title>CodeLibras - Aprenda Programação em Libras</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -40,6 +40,7 @@
     </div>
   </header>
 
+  
   <!-- MAIN NAVIGATION -->
   <nav class="bg-slate-800 border-b border-slate-700 py-4 px-4 shadow-lg" role="navigation" aria-label="Navegação Principal">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
@@ -83,5 +84,165 @@
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
       <div class="lg:col-span-7 space-y-6">
         <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm font-bold border border-blue-200">
+
+  <header>
+    <h1>CodeLibras — Programação Acessível</h1>
+    <div class="accessibility-bar">
+        <button onclick="toggleContrast()">Alto Contraste</button>
+    </div>
+</header>
+
+<main>
+    <section class="grid">
+        <!-- Módulo 1: HTML -->
+        <article class="card">
+            <h2>1. HTML em libras?</h2>
+            
+            <div class="video-container">
+                <iframe src="header {
+            background-color: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accessibility-bar button {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Container de vídeo mantendo proporção 16:9 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            background-color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe, .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CodeLibras — Programação Acessível</h1>
+        <div class="accessibility-bar">
+            <button onclick="toggleContrast()">Alto Contraste</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="grid">
+            <!-- Módulo 1: HTML -->
+            <article class="card">
+                <h2>1. O que é HTML?</h2>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/watch?v=Z3ipadi9AbQ"" 
+                        title="Vídeo em Libras explicando HTML" 
+                        allowfullscreen></iframe>
+            </div>
+
+            <p>O <strong>HTML</strong> é a linguagem usada para criar a estrutura dos sites.</p>
+            
+            <div class="code-block">
+&lt;h1&gt;Meu Primeiro Título&lt;/h1&gt;
+&lt;p&gt;Este é um parágrafo.&lt;/p&gt;
+            </div>
+        </article>
+
+        <!-- Módulo 2: CSS -->
+        <article class="card">
+            <h2>2. CSS em libras</h2>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/SEU_VIDEO_LIBRAS_CSS" 
+                        title="Vídeo em Libras explicando CSS" 
+                        allowfullscreen></iframe>
+            </div>
+
+            <p>O <strong>CSS</strong> é responsável por alterar as cores, tamanhos e visual do site.</p>
+            
+            <div class="code-block">
+            </div>
+        </article>
+
+        <!-- Módulo 3: Lógica -->
+        <article class="card">
+            <h2>3.Lógica de Programação em libras</h2>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/SEU_VIDEO_LIBRAS_LOGICA" 
+                        title="Vídeo em Libras explicando Lógica de Programação" 
+                        allowfullscreen></iframe>
+            </div>
+
+            <p>Programar é criar instruções passo a passo para o computador executar.</p>
+        </article>
+
+        <p> Direitos dos videos a:</p>
+    </section>
+</main>
+
+    <!-- Widget Oficial do VLibras (Tradutor de Texto para Libras) -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+
+        function toggleContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+    </script>
 </body>
 </html>
