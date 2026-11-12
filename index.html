@@ -31,66 +31,11 @@
           <button id="btn-font-decrease" title="Diminuir Fonte (A-)" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded font-bold border border-slate-600 focus:ring">A-</button>
           <button id="btn-font-reset" title="Tamanho Normal da Fonte" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded font-bold border border-slate-600 focus:ring">A</button>
           <button id="btn-font-increase" title="Aumentar Fonte (A+)" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded font-bold border border-slate-600 focus:ring">A+</button>
+          <div class="accessibility-bar">
+            <button onclick="toggleContrast()">Modo escuro</button>
         </div>
-        <button id="btn-high-contrast" class="flex items-center space-x-2 px-3 py-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded transition focus:ring" title="Alternar Alto Contraste">
-          <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
-          <span>Alto Contraste</span>
-        </button>
-      </div>
     </div>
   </header>
-
-  
-  <!-- MAIN NAVIGATION -->
-  <nav class="bg-slate-800 border-b border-slate-700 py-4 px-4 shadow-lg" role="navigation" aria-label="Navegação Principal">
-    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
-      <a href="#home" class="flex items-center space-x-3 group text-white">
-        <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white text-xl font-black group-hover:scale-105 transition-transform">
-          🤟
-        </div>
-        <div>
-          <span class="text-2xl font-black tracking-wider text-blue-400 block leading-none">LibrasCode</span>
-          <span class="text-xs text-slate-300">Computação Sem Barreiras</span>
-        </div>
-      </a>
-
-      <!-- Menu Items -->
-      <ul class="flex flex-wrap items-center gap-2 md:gap-6 font-semibold">
-        <li>
-          <a href="#modulos" class="px-3 py-2 text-white hover:text-blue-400 hover:bg-slate-700/50 rounded-lg transition flex items-center space-x-2">
-            <i class="fa-solid fa-cubes text-blue-400" aria-hidden="true"></i>
-            <span>Módulos</span>
-          </a>
-        </li>
-        <li>
-          <a href="#pratica" class="px-3 py-2 text-white hover:text-blue-400 hover:bg-slate-700/50 rounded-lg transition flex items-center space-x-2">
-            <a href="#pratica" class="px-3 py-2 text-white hover:text-blue-400 hover:bg-slate-700/50 rounded-lg transition flex items-center space-x-2">
-            <i class="fa-solid fa-code text-teal-400" aria-hidden="true"></i>
-            <span>Editor Prático</span>
-          </a>
-        </li>
-        <li>
-          <a href="#glossario" class="px-3 py-2 text-white hover:text-blue-400 hover:bg-slate-700/50 rounded-lg transition flex items-center space-x-2">
-            <i class="fa-solid fa-book-bookmark text-amber-400" aria-hidden="true"></i>
-            <span>Sinais em Libras</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- HERO SECTION -->
-  <section id="home" class="py-12 px-4 border-b border-slate-200 card-theme bg-gradient-to-b from-blue-50/50 to-transparent dark:from-transparent">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-      <div class="lg:col-span-7 space-y-6">
-        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm font-bold border border-blue-200">
-
-  <header>
-    <h1>CodeLibras — Programação Acessível</h1>
-    <div class="accessibility-bar">
-        <button onclick="toggleContrast()">Alto Contraste</button>
-    </div>
-</header>
 
 <main>
     <section class="grid">
@@ -99,7 +44,9 @@
             <h2>1. HTML em libras?</h2>
             
             <div class="video-container">
-                <iframe src="header {
+                <iframe src="
+                <style>
+                header {
             background-color: var(--accent);
             color: white;
             padding: 1rem 2rem;
@@ -183,7 +130,7 @@
                 <h2>1. O que é HTML?</h2>
                 
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/watch?v=Z3ipadi9AbQ"" 
+                    <iframe src="https://youtu.be/Z3ipadi9AbQ?si=WUXrGBQ12vo3kf4a"" 
                         title="Vídeo em Libras explicando HTML" 
                         allowfullscreen></iframe>
             </div>
@@ -243,6 +190,38 @@
         function toggleContrast() {
             document.body.classList.toggle('high-contrast');
         }
+  // Seleciona os botões
+  const btnDecrease = document.getElementById('btn-font-decrease');
+  const btnReset = document.getElementById('btn-font-reset');
+  const btnIncrease = document.getElementById('btn-font-increase');
+
+  // Define o elemento alvo e o tamanho de fonte padrão
+  const targetElement = document.body; // Altere para outro seletor, se necessário
+  let fontSize = 16; // Tamanho de fonte padrão em pixels
+
+  // Função para atualizar o tamanho da fonte
+  function updateFontSize() {
+    targetElement.style.fontSize = `${fontSize}px`;
+  }
+
+  // Eventos para os botões
+  btnDecrease.addEventListener('click', () => {
+    fontSize = Math.max(10, fontSize - 2); // Limita o tamanho mínimo a 10px
+    updateFontSize();
+  });
+
+  btnReset.addEventListener('click', () => {
+    fontSize = 16; // Reseta para o tamanho padrão
+    updateFontSize();
+  });
+
+  btnIncrease.addEventListener('click', () => {
+    fontSize = Math.min(32, fontSize + 2); // Limita o tamanho máximo a 32px
+    updateFontSize();
+  });
+
+  // Inicializa o tamanho da fonte
+  updateFontSize();
     </script>
 </body>
 </html>
