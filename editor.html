@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor de Código Interativo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+
+        /* Coloca a caixa de código e o resultado lado a lado */
+        .editor-container {
+            display: flex;
+            gap: 20px;
+            height: 300px;
+        }
+
+        textarea {
+            width: 50%;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 16px;
+            background-color: #1e1e1e;
+            color: #00ff88;
+            border-radius: 8px;
+            border: none;
+            resize: none;
+        }
+
+        iframe {
+            width: 50%;
+            background-color: #ffffff;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Pratique agora: mude o texto ou a cor abaixo!</h2>
+
+    <div class="editor-container">
+        <!-- Onde o aluno digita o código -->
+        <textarea id="codigo-aluno" oninput="atualizarTela()">
+<h1>Olá, Mundo!</h1>
+<p>Tente mudar a cor do título abaixo:</p>
+
+<style>
+  h1 {
+    color: blue;
+  }
+</style>
+        </textarea>
+
+        <!-- Onde o resultado aparece -->
+        <iframe id="resultado"></iframe>
+    </div>
+
+    <button onclick="atualizarTela()">Testar Código</button>
+
+    <script>
+        function atualizarTela() {
+            const codigo = document.getElementById('codigo-aluno').value;
+            const iframe = document.getElementById('resultado');
+            
+            // Joga o código digitado dentro da janela de visualização
+            iframe.srcdoc = codigo;
+        }
+
+        // Roda uma vez assim que a página abre para já mostrar o exemplo
+        atualizarTela();
+    </script>
+
+</body>
+</html>
