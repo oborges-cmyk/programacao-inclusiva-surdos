@@ -1,147 +1,399 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeLibras - Aprenda Programação em Libras</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Prism.js Syntax Highlighting CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <title>CodeLibras — Programação Acessível</title>
+    <style>
+        /* Tamanho base controlado pelo JavaScript para A+ e A- */
+        html {
+            font-size: 100%;
+            scroll-behavior: smooth;
+        }
+
+        /* Tema Padrão (Claro) */
+        :root {
+            --bg-primary: #f4f7f6;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-text: #ffffff;
+            --border-color: #cbd5e1;
+        }
+
+        /* Tema: Modo Escuro */
+        body.dark-mode {
+            --bg-primary: #0f172a;
+            --text-color: #f1f5f9;
+            --card-bg: #1e293b;
+            --accent: #3b82f6;
+            --accent-hover: #60a5fa;
+            --accent-text: #ffffff;
+            --border-color: #334155;
+        }
+
+        /* Tema: Alto Contraste */
+        body.high-contrast {
+            --bg-primary: #000000;
+            --text-color: #ffff00;
+            --card-bg: #000000;
+            --accent: #ffff00;
+            --accent-hover: #e6e600;
+            --accent-text: #000000;
+            --border-color: #ffff00;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        header {
+            background-color: var(--accent);
+            color: var(--accent-text);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        /* Botões da barra superior (classes próprias para não afetar o VLibras) */
+        .btn-nav, .btn-a11y {
+            background-color: #ffffff;
+            color: #000000;
+            border: 2px solid #000000;
+            padding: 0.45rem 0.85rem;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-nav:hover, .btn-a11y:hover {
+            background-color: #e2e8f0;
+        }
+
+        /* Destaque visual quando o Modo Escuro ou Alto Contraste estiver ativo */
+        .btn-a11y.ativo {
+            background-color: #000000;
+            color: #ffff00;
+            border-color: #ffff00;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            margin-top: 0;
+        }
+
+        /* Container de vídeo mantendo proporção 16:9 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            background-color: #000000;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .video-container iframe, .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-card {
+            display: inline-block;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.6rem 1rem;
+            background-color: var(--accent);
+            color: var(--accent-text);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        /* Seção do Editor Prático */
+        .editor-section {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .editor-section h2 {
+            font-size: 1.4rem;
+            margin-top: 0;
+        }
+
+        .editor-container {
+            display: flex;
+            gap: 20px;
+            height: 320px;
+            margin-top: 1rem;
+        }
+
+        .editor-textarea {
+            width: 50%;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 1rem;
+            background-color: #1e1e1e;
+            color: #00ff88;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            resize: none;
+        }
+
+        .editor-iframe {
+            width: 50%;
+            background-color: #ffffff;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .btn-testar {
+            margin-top: 15px;
+            padding: 0.65rem 1.25rem;
+            font-size: 1rem;
+            font-weight: bold;
+            background-color: var(--accent);
+            color: var(--accent-text);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-testar:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Adaptação para celular */
+        @media (max-width: 768px) {
+            .editor-container {
+                flex-direction: column;
+                height: 500px;
+            }
+            .editor-textarea, .editor-iframe {
+                width: 100%;
+                height: 50%;
+            }
+        }
+    </style>
 </head>
 <body>
-<body class="min-h-screen flex flex-col antialiased">
 
-  <!-- ACCESSIBILITY TOOLBAR (TOP STRIP) -->
-  <header class="bg-slate-900 text-white py-2 px-4 shadow-md sticky top-0 z-40" role="banner">
-    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2 text-sm">
-      <div class="flex items-center space-x-2 font-bold text-amber-400">
-        <i class="fa-solid fa-hands-asl-interpreting text-xl" aria-hidden="true"></i>
-        <span>CodeLibras</span>
-      </div>
-      
-      <!-- Quick Accessibility Controls -->
-      <div class="flex items-center space-x-4">
-        <div class="flex items-center space-x-1" aria-label="Controle de tamanho de fonte">
-          <span class="sr-only">Tamanho do texto:</span>
-          <button id="btn-font-decrease" title="Diminuir Fonte (A-)" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded font-bold border border-slate-600 focus:ring">A-</button>
-          <button id="btn-font-reset" title="Tamanho Normal da Fonte" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded font-bold border border-slate-600 focus:ring">A</button>
-          <button id="btn-font-increase" title="Aumentar Fonte (A+)" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded font-bold border border-slate-600 focus:ring">A+</button>
-          <div class="accessibility-bar">
-            <button onclick="toggleContrast()">Modo escuro</button>
+    <header>
+        <h1>CodeLibras — Programação Acessível</h1>
+        <div class="nav-actions">
+            <!-- Controles de Fonte -->
+            <button type="button" class="btn-a11y" onclick="alterarFonte(-10)" aria-label="Diminuir tamanho da fonte">A-</button>
+            <button type="button" class="btn-a11y" onclick="alterarFonte(10)" aria-label="Aumentar tamanho da fonte">A+</button>
+            
+            <!-- Controles de Tema -->
+            <button type="button" id="btn-dark" class="btn-a11y" onclick="alternarModoEscuro()">Modo Escuro</button>
+            <button type="button" id="btn-contrast" class="btn-a11y" onclick="alternarAltoContraste()">Alto Contraste</button>
+            
+            <!-- Redirecionamento ao Editor -->
+            <a href="#editor" class="btn-nav">Editor Prático</a>
         </div>
-
-      <!-- Menu Items -->
-       <div>
-      <ul class="flex flex-wrap items-center gap-2 md:gap-6 font-semibold">
-        <li>
-          <a href="#modulos" class="px-3 py-2 text-white hover:text-blue-400 hover:bg-slate-700/50 rounded-lg transition flex items-center space-x-2">
-            <i class="fa-solid fa-cubes text-blue-400" aria-hidden="true"></i>
-            <span>Módulos</span>
-          </a>
-        </li>
-        <li>
-          <a href="#pratica" class="px-3 py-2 text-white hover:text-blue-400 hover:bg-slate-700/50 rounded-lg transition flex items-center space-x-2">
-            <i class="fa-solid fa-code text-teal-400" aria-hidden="true"></i>
-            <li><a href="editor.html">Editor Prático</a></li>
-          </a>
-        </li>
-        <li>
-          <a href="#glossario" class="px-3 py-2 text-white hover:text-blue-400 hover:bg-slate-700/50 rounded-lg transition flex items-center space-x-2">
-            <i class="fa-solid fa-book-bookmark text-amber-400" aria-hidden="true"></i>
-            <span>Sinais em Libras</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- HERO SECTION -->
-  <section id="home" class="py-12 px-4 border-b border-slate-200 card-theme bg-gradient-to-b from-blue-50/50 to-transparent dark:from-transparent">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-      <div class="lg:col-span-7 space-y-6">
-        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm font-bold border border-blue-200">
-  </header>
-      
-</head>
+    </header>
 
     <main>
+        <!-- Módulos Teóricos com Vídeos em Libras -->
         <section class="grid">
-            <!-- Módulo 1: HTML -->
+            <!-- Módulo 1: Computação Básica -->
             <article class="card">
-                <h2>1. O que é HTML?</h2>
-                
-                <div class="video-container">
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/Z3ipadi9AbQ?si=cQ6_LzIZEj0nFh5_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div>
+                    <h2>1. Computação</h2>
+                    <div class="video-container">
+                      <iframe width="560" height="315" src="https://www.youtube.com/embed/UfrGoP4htAw?si=phW81y80ka-jCRbb" title="Vídeo oferecendo a traducão em libras de computação" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <p>Programar é dar instruções passo a passo para o computador resolver um problema.</p>
+                </div>
+
+                <article>
+                  <h2> 2. Lógica</h2>
+                  <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Rhi0q7Yd-uc?si=6McMhyTi0l9BPPnR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                </article>
+                <a href="#editor" class="btn-card">Testar no Editor ↓</a>
+            </article>
+
+            <!-- Módulo 2: HTML -->
+            <article class="card">
+                <div>
+                    <h2>2. O que é HTML?</h2>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/SEU_VIDEO_LIBRAS_HTML" 
+                                title="Vídeo em Libras explicando HTML" 
+                                allowfullscreen></iframe>
+                    </div>
+                    <p>O <strong>HTML</strong> cria a estrutura da página usando tags como títulos e parágrafos:</p>
+                    <div class="code-block">&lt;h1&gt;Meu Título&lt;/h1&gt;
+&lt;p&gt;Meu parágrafo.&lt;/p&gt;</div>
+                </div>
+                <a href="#editor" class="btn-card">Testar no Editor ↓</a>
+            </article>
+
+            <!-- Módulo 3: CSS -->
+            <article class="card">
+                <div>
+                    <h2>3. O que é CSS?</h2>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/SEU_VIDEO_LIBRAS_CSS" 
+                                title="Vídeo em Libras explicando CSS" 
+                                allowfullscreen></iframe>
+                    </div>
+                    <p>O <strong>CSS</strong> muda o visual do site, controlando cores, fontes e tamanhos:</p>
+                    <div class="code-block">h1 {
+    color: blue;
+    font-size: 24px;
+}</div>
+                </div>
+                <a href="#editor" class="btn-card">Testar no Editor ↓</a>
+            </article>
+        </section>
+
+        <!-- Seção do Editor Prático -->
+        <section id="editor" class="editor-section">
+            <h2>4. Editor Prático: Experimente agora!</h2>
+            <p>Altere o texto ou a cor dentro da caixa preta à esquerda e veja o resultado ao lado:</p>
+
+            <div class="editor-container">
+                <textarea id="codigo-aluno" class="editor-textarea" oninput="atualizarTela()">
+<h1>Olá, Mundo!</h1>
+<p>Tente mudar a cor do título acima:</p>
+
+<style>
+  h1 {
+    color: blue;
+  }
+</style>
+                </textarea>
+
+                <iframe id="resultado" class="editor-iframe" title="Resultado do código"></iframe>
             </div>
 
-            <p>O <strong>HTML</strong> é a linguagem usada para criar a estrutura dos sites.</p>
-            
-            <div class="code-block">
-&lt;h1&gt;Meu Primeiro Título&lt;/h1&gt;
-&lt;p&gt;Este é um parágrafo.&lt;/p&gt;
-            </div>
-        </article>
+            <button type="button" class="btn-testar" onclick="atualizarTela()">Testar Código</button>
+        </section>
+    </main>
 
-        <article class="card">
-            <h2>2. HTML estrura básica</h2>
-            
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/e1qYonEytF8?si=PNKDgMSOXoCOkbRp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
+    <footer> Direitos reservados propriamente aos autores dos vídeos acima</footer>
 
-        <p> Código padrão EMET em libras</p>
-        </article>
-
-        <!-- Módulo 2: CSS -->
-        <article class="card">
-            <h2>2.O que é CSS?</h2>
-            
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/lU3YXTtvzuY?si=hm_twe79I-qQhRfp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-
-            <p>O <strong>CSS</strong> é responsável por alterar as cores, tamanhos e visual do site.</p>
-            
-            <div class="code-block">
-                * {
-                    box-sizing: border-box; /* Inclui padding e border no tamanho total do elemento */
-                    margin: 0; /* Remove a margem padrão */
-                    padding: 0; /* Remove o padding (espaçamento) padrão */
-                  }
-            </div>
-        </article>
-
-        <!-- Módulo 3: Lógica -->
-        <article class="card">
-            <h2>3.O que é Lógica de Programação?</h2>
-            
-
-            <div>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/6N8selF8qnI?si=TiTcitDA0vkBYlJz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/Lds9xOsSfwc?si=QBTGnEsrfkY4kprJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-
-            <p>Programar é criar instruções passo a passo para o computador executar.</p>
-        </article>
-
-        <footer> Créditos dos videos totalmente reservados e direcionados a seus respectivos autores</footer>
-    </section>
-</main>
-
-    <!-- Widget Oficial do VLibras (Tradutor de Texto para Libras) -->
+    <!-- Estrutura Oficial do Botão e Plugin VLibras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
+    <script src="script.js"></script>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+
+        // Controle do tamanho da fonte (entre 80% e 140%)
+        let tamanhoFonte = 100;
+        function alterarFonte(valor) {
+            tamanhoFonte += valor;
+            if (tamanhoFonte < 80) tamanhoFonte = 80;
+            if (tamanhoFonte > 140) tamanhoFonte = 140;
+            document.documentElement.style.fontSize = tamanhoFonte + '%';
+        }
+
+        // Alterna Modo Escuro e desativa Alto Contraste se estiver ligado
+        function alternarModoEscuro() {
+            document.body.classList.remove('high-contrast');
+            document.getElementById('btn-contrast').classList.remove('ativo');
+
+            document.body.classList.toggle('dark-mode');
+            document.getElementById('btn-dark').classList.toggle('ativo');
+        }
+
+        // Alterna Alto Contraste e desativa Modo Escuro se estiver ligado
+        function alternarAltoContraste() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('btn-dark').classList.remove('ativo');
+
+            document.body.classList.toggle('high-contrast');
+            document.getElementById('btn-contrast').classList.toggle('ativo');
+        }
+
+        // Atualiza a janela de visualização do editor
+        function atualizarTela() {
+            const codigo = document.getElementById('codigo-aluno').value;
+            const iframe = document.getElementById('resultado');
+            iframe.srcdoc = codigo;
+        }
+
+        atualizarTela();
+    </script>
 </body>
 </html>
